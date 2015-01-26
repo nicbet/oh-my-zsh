@@ -97,6 +97,16 @@ function steeef_precmd {
 }
 add-zsh-hook precmd steeef_precmd
 
+i_filler=$(( $COLUMNS ))
+filler="%{$fg[white]$bg[white]%}${(l:${i_filler}::-:)}%{$reset_color%}"
 PROMPT=$'
-%{$purple%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)%{$reset_color%}
+%{${filler}%}
+%{$reset_color%}%{$hotpink%}[20%D | %*]%{$reset_color%} %{$purple%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%~%{$reset_color%} $vcs_info_msg_0_$(virtualenv_info)%{$reset_color%}
 $ '
+
+#TMOUT=1
+
+#TRAPALRM() {
+#    zle reset-prompt
+#}
+
